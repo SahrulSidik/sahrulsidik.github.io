@@ -1,0 +1,119 @@
+<!-- Project: Kaptech Portfolio | File: privacy-policy.html | Description: Kebijakan privasi aplikasi untuk kepatuhan Google Play Console -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width'>
+    <title>Privacy Policy - Kaptech Dev Official</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Inline Critical Styles for Zero-Loading -->
+    <style>
+        :root {
+          --color-primary: #2563eb;
+          --color-primary-light: #3b82f6;
+          --color-primary-dark: #1d4ed8;
+          --text-main: #020617;
+          --text-muted: #334155;
+          --text-dim: #64748b;
+          --border-color: rgba(0, 0, 0, 0.05);
+          --bg-card-hover: #ffffff;
+          --gradient-primary: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+        }
+    </style>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Kaptech SW: Aktif!'))
+                    .catch(err => console.log('Kaptech SW: Gagal!', err));
+            });
+        }
+    </script>
+    <style> 
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding:2em; line-height: 1.8; color: var(--text-muted); max-width: 900px; margin: auto; background-color: #f8fafc; }
+        .container { background-color: #ffffff; padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
+        h1 { color: var(--text-main); text-align: center; margin-bottom: 30px; border-bottom: 3px solid var(--color-primary); padding-bottom: 10px; }
+        h2 { color: var(--color-primary-light); margin-top: 30px; border-left: 5px solid var(--color-primary); padding-left: 15px; }
+        p, li { font-size: 15px; }
+        .highlight { background-color: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 5px; font-style: italic; margin-bottom: 20px; border-left: 3px solid var(--color-primary); }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 12px; }
+        a { color: var(--color-primary-light); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; color: var(--text-main); }
+        .contact-box { background-color: var(--bg-card-hover); padding: 20px; border-radius: 5px; margin-top: 30px; border: 1px solid var(--border-color); }
+        footer { text-align: center; margin-top: 40px; font-size: 0.8em; color: var(--text-dim); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>Welcome to <strong>Kaptech Dev</strong>. Your privacy is critically important to us. This Privacy Policy document outlines the types of information that is collected and recorded by our applications and how we use it.</p>
+
+        <div class="highlight">
+            By using our applications (including <strong>Counter Tasbih Pro: Zikir App</strong>, <strong>RiseSocial: Profil Booster</strong>, and others), you hereby consent to our Privacy Policy and agree to its terms. This policy is effective as of February 2026.
+        </div>
+
+        <h2>1. Information Collection and Use</h2>
+        <p>For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information. We want to inform you that we do not collect any personal data directly on our own private servers. All data processing is handled through secure Google infrastructure.</p>
+        <ul>
+            <li><strong>Personal Data:</strong> We do not store your private credentials. Any authentication is handled via Google Sign-In to ensure top-tier security.</li>
+            <li><strong>Device Information:</strong> Our apps may collect non-sensitive info like device model and OS version to optimize performance.</li>
+        </ul>
+
+        <h2>2. Third-Party Service Providers</h2>
+        <p>Our applications integrate with various third-party services to provide core features, advertising, and database management. These providers have access to your Personal Information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+        
+        <p>Below are the links to the Privacy Policies of the third-party service providers used by our apps:</p>
+        <ul>
+            <li>
+                <strong>Google Play Services:</strong> 
+                <a href="https://www.google.com/policies/privacy/" target="_blank">https://www.google.com/policies/privacy/</a>
+            </li>
+            <li>
+                <strong>AdMob (Advertising):</strong> 
+                <a href="https://support.google.com/admob/answer/6128543?hl=id" target="_blank">https://support.google.com/admob/answer/6128543</a>
+            </li>
+            <li>
+                <strong>Firebase (Database & Analytics):</strong> 
+                <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
+            </li>
+        </ul>
+
+        <h2>3. Data Security and Integrity</h2>
+        <p>We value your trust in providing us your personal information. For applications involving user accounts or sync features, we use <strong>Firebase Realtime Database</strong> to ensure your data is encrypted and stored using Google's world-class security protocols. Your passwords are never visible to us.</p>
+
+        <h2>4. Log Data</h2>
+        <p>We want to inform you that whenever you use our Service, in a case of an error in the app, we collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, and the time and date of your use of the Service.</p>
+
+        <h2>5. Children’s Privacy</h2>
+        <p>These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers.</p>
+
+        <h2>6. Contact and Support</h2>
+        <p>If you have any questions or suggestions about our Privacy Policy, please reach out to our official developer support team:</p>
+        <div class="contact-box">
+            <strong>Developer Team: Kaptech Dev</strong><br>
+            Email 1: <a href="mailto:ss.infowe@gmail.com">ss.infowe@gmail.com</a><br>
+            Email 2: <a href="mailto:support-kaptech@googlegroups.com">support-kaptech@googlegroups.com</a><br>
+            Email 3: <a href="mailto:support-grow@googlegroups.com">support-grow@googlegroups.com</a>
+        </div>
+
+        <h2 id="delete-account">7. Account and Data Deletion</h2>
+        <p>In compliance with Google Play's Data Safety policies (specifically for <strong>Counter Tasbih Pro: Zikir App</strong> and <strong>RiseSocial: Profil Booster</strong>), we provide a straightforward way for users to request the deletion of their accounts and associated data. You can request data deletion even if you have already uninstalled the app.</p>
+        <ul>
+            <li><strong>How to Request:</strong> Send an email to any of our support addresses: <a href="mailto:ss.infowe@gmail.com">ss.infowe@gmail.com</a>, <a href="mailto:support-kaptech@googlegroups.com">support-kaptech@googlegroups.com</a>, or <a href="mailto:support-grow@googlegroups.com">support-grow@googlegroups.com</a> with the subject "Data Deletion Request" and provide your registered email address.</li>
+            <li><strong>Data to be Deleted:</strong> Upon request, we will permanently delete your user profile, authentication records, and all application-specific data collected by <strong>Counter Tasbih Pro</strong> or <strong>RiseSocial</strong> stored in our Firebase database.</li>
+            <li><strong>Retention Period:</strong> Once the request is verified, data deletion will be processed within 30 days. Some non-identifiable log data may be retained temporarily for security and debugging purposes as permitted by law.</li>
+            <li><strong>Verification & Re-Registration:</strong> To verify if your deletion request has been completed, you may attempt to access the <strong>Login</strong> menu in the respective app. If the account has been successfully deleted, the system will no longer recognize your previous data and will treat the attempt as a <strong>new registration</strong>.</li>
+        </ul>
+
+        <footer>
+            &copy; 2026 <a href="https://sahrulsidik.github.io/">Kaptech Dev</a>. All Rights Reserved.<br>
+            <em>This policy is updated periodically to stay compliant with the latest Google Play Store and AdMob regulations.</em>
+        </footer>
+    </div>
+</body>
+</html>

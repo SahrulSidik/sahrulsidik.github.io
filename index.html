@@ -1,0 +1,689 @@
+<!--
+  Project: Kaptech Portfolio (Android Developer)
+  Author: Senior Fullstack Developer & UI/UX Expert
+  Tech Stack: HTML5, CSS3, JS ES6+ (Full Vanilla)
+  Features: Single Page, Glassmorphism, Responsive, Smooth Animation
+  Theme: Blue, Black, White
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaptech | Android Developer Portfolio</title>
+    <style>
+        /* DESIGN SYSTEM & VARIABLES */
+        :root {
+            --primary: #007AFF; /* Modern Blue */
+            --dark: #000000; /* Deep Black */
+            --light: #FFFFFF; /* Pure White */
+            --text-secondary: #334155; /* Dark Navy for subtext */
+            --glass: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --font-main: 'Inter', -apple-system, sans-serif;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .blue-text {
+            color: var(--primary);
+        }
+
+        /* SECTION HEADINGS */
+        .section-header {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        /* HERO SECTION */
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 0 60px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-desc {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.01);
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 1.2rem 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #0F172A;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* PROJECT SLIDER SYSTEM */
+        .projects-container {
+            position: relative;
+            overflow: hidden;
+            padding: 10px 0;
+        }
+
+        .projects-track {
+            display: flex;
+            gap: 2.5rem;
+            padding-top: 10px;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            will-change: transform;
+        }
+
+        .project-card {
+            flex: 0 0 calc(33.333% - 1.67rem); /* Exactly 3 items per view */
+            background: #FFFFFF;
+            border: 1px solid #F1F5F9;
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 520px;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            opacity: 1 !important;
+            transform: none !important;
+            text-align: center; /* Center text content */
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.12);
+            border-color: var(--primary);
+        }
+
+        .project-card img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            border-radius: 0; /* Remove border radius if transparent */
+            margin: 0 auto 2rem; /* Center horizontally with margin auto */
+            display: block;
+            background: transparent; /* Transparent background as requested */
+            padding: 0;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08)); /* Premium floating effect */
+        }
+
+        .project-card .tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.12rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            display: block;
+            width: 100%;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .project-card a {
+            align-self: center; /* Center the button */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 1.5rem;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            color: var(--dark);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            width: fit-content;
+        }
+
+        .project-card a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Specific style for "Soon" or Private links */
+        .project-card a[href=""] {
+            opacity: 0.6;
+            cursor: default;
+            pointer-events: none;
+            background: #F1F5F9;
+            border-style: dashed;
+        }
+
+        /* SLIDER CONTROLS */
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 3rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #E2E8F0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            width: 30px;
+            background: var(--primary);
+            border-radius: 100px;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+
+        /* VIEW ALL BUTTON (Image Reference 3) */
+        .view-all-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 2rem;
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 100px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-view-all:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .btn-view-all .dot-indicator {
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* EXPANDED GRID STATE */
+        .projects-container.expanded .projects-track {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            transform: none !important;
+            padding: 20px 0;
+        }
+
+        .projects-container.expanded .project-card.clone {
+            display: none;
+        }
+
+        .projects-container.expanded .project-card {
+            flex: none;
+            width: 100%;
+            min-height: 400px;
+        }
+
+        @media (max-width: 1024px) {
+            .projects-container.expanded .projects-track {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-container.expanded .projects-track {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .projects-container.expanded + .slider-controls {
+            display: none;
+        }
+
+        /* RESPONSIVE SLIDER */
+        @media (max-width: 1024px) {
+            .project-card { flex: 0 0 calc(50% - 1.25rem); }
+        }
+        @media (max-width: 768px) {
+            .project-card { flex: 0 0 100%; }
+            h1 { font-size: 3.2rem; }
+            .hero-desc { font-size: 1.1rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo"><img src="assets/kaptech_logo.webp" alt="KAPTECH" style="height: 50px; display: block;"></a>
+            <div class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#projects">Our App</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero">
+            <div class="container hero-content">
+                <h1>Simple, Practical & <br><span class="blue-text">Modern Utility Apps</span></h1>
+                <p class="hero-desc">Crafting high-performance Android tools, Chrome Extensions, and MQL5 Expert Advisors designed to automate and simplify your digital ecosystem.</p>
+                <div style="display: flex; justify-content: center;">
+                    <a href="#projects" style="background: var(--dark); color: white; padding: 1.2rem 2.5rem; border-radius: 100px; text-decoration: none; font-weight: 700; transition: var(--transition);">Explore Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="tag" style="margin-bottom: 0.5rem;">PORTFOLIO</span>
+                    <h2 style="font-size: 3.5rem; font-weight: 800;">Featured <span class="blue-text">Project</span> List</h2>
+                </div>
+
+                <div class="view-all-wrapper">
+                    <button id="toggleProjects" class="btn-view-all">
+                        <span class="dot-indicator"></span>
+                        <span id="btnText">Showing 12 Projects</span>
+                        <span style="font-size: 1.2rem;">&rarr;</span>
+                    </button>
+                </div>
+                
+                <div class="projects-container" id="sliderContainer">
+                    <div class="projects-track" id="sliderTrack">
+                        <!-- Card 1 -->
+                        <div class="project-card">
+                            <span class="tag">ANDROID</span>
+                            <img src="assets/android_icon_countertasbih.webp" alt="">
+                            <h3>Counter Tasbih Pro: Zikir App</h3>
+                            <p>Digital Tasbih with premium interface, vibration feedback, and daily zikir tracking to enhance your spiritual journey.</p>
+                            <a href="https://play.google.com/store/apps/details?id=com.sahrulsidik.countertasbihpro">VIEW ON PLAYSTORE</a>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="project-card">
+                            <span class="tag">ANDROID</span>
+                             <img src="assets/android_icon_risesocial.webp" alt="">
+                            <h3>RiseSocial: Profil Booster</h3>
+                            <p>Optimize your social media presence with advanced profiling tools and engagement analytics built for growth.</p>
+                            <a href="">VIEW ON PLAYSTORE</a>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="project-card">
+                            <span class="tag">EXTENTION</span>
+                            <img src="assets/extention_icon_facebokkall.webp" alt="">
+                            <h3>FB Web Auto Comment Bot</h3>
+                            <p>Facebook comment automation with multi-payload support and real-time logs.</p>
+                            <a href="">PRIVATE USE (CHROME WEB STORE SOON)</a>
+                        </div>
+                        <!-- Card 4 (Added for slider demo)-->
+                        <div class="project-card">
+                            <span class="tag">EXTENTION</span>
+                            <img src="assets/extention_icon_ytpersonal.webp" alt="">
+                            <h3>YT Shorts Auto Comment </h3>
+                            <p>Intelligent and silent YouTube Shorts comment automation to boost engagement for only your channel.</p>
+                            <a href="">PRIVATE USE (CHROME WEB STORE SOON)</a>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="project-card">
+                            <span class="tag">EXTENTION</span>
+                            <img src="assets/extention_icon_ytall.webp" alt="">
+                            <h3>YT Shorts Pro Scroll & Comment</h3>
+                            <p>Boost engagement across multiple channels with intelligent and silent YouTube Shorts comment automation.</p>
+                            <a href="">PRIVATE USE (CHROME WEB STORE SOON)</a>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="project-card">
+                            <span class="tag">EXTENTION</span>
+                            <img src="assets/extention_icon_exporttiktok.webp" alt="">
+                            <h3>TT Followers Export</h3>
+                            <p>Export Tiktok followers to CSV with real-time logging and human-like behavior simulation.</p>
+                            <a href="">PRIVATE USE (CHROME WEB STORE SOON)</a>
+                        </div>
+                        <!-- Card 7 -->
+                        <div class="project-card">
+                            <span class="tag">EXTENTION</span>
+                            <img src="assets/extention_icon_exportinstagram.webp" alt="">
+                            <h3>IG Followers Export - Premium Scraper</h3>
+                            <p>Export Instagram followers to CSV with real-time logging and human-like behavior simulation.</p>
+                            <a href="">PRIVATE USE (CHROME WEB STORE SOON)</a>
+                        </div>
+                        <!-- Card 8 -->
+                        <div class="project-card">
+                            <span class="tag">MQL5 EA</span>
+                            <img src="assets/mql5_ea_BMAAutoEntryKaptech.webp" alt="">
+                            <h3>ea_BMAAutoEntryKaptech</h3>
+                            <p>Optimized specifically for the XAUUSD (Gold) M1 timeframe, BMAAutoEntry is an advanced execution tool designed for precision scalping. It combines rapid entry logic with robust risk management to handle the high volatility of the gold market.</p>
+                            <a href="">PRIVATE USE (MQL5 MARKET SOON)</a>
+                        </div>
+                        <!-- Card 9 -->
+                        <div class="project-card">
+                            <span class="tag">MQL5 EA</span>
+                            <img src="assets/mql5_ea_autoRunAgresifBuyLayer.webp" alt="">
+                            <h3>ea_autoRunAgresifBuyLayer</h3>
+                            <p>A specialized execution system engineered specifically for XAUUSD (Gold) on the M1 timeframe. This version is strictly optimized for Buy-Only strategies, allowing you to capitalize on bullish trends with lightning-fast entries and automated risk management.</p>
+                            <a href="">PRIVATE USE (MQL5 MARKET SOON)</a>
+                        </div>
+                        <!-- Card 10 -->
+                        <div class="project-card">
+                            <span class="tag">MQL5 EA</span>
+                            <img src="assets/mql5_ea_autoRunAgresifSellLayer.webp" alt="">
+                            <h3>ea_autoRunAgresifSellLayer</h3>
+                            <p>An advanced execution tool specifically optimized for XAUUSD (Gold) on the M1 timeframe. This version is strictly engineered for Sell-Only strategies, allowing you to profit from downward trends with high-speed entries and automated risk management.</p>
+                            <a href="">PRIVATE USE (MQL5 MARKET SOON)</a>
+                        </div>
+                        <!-- Card 11 -->
+                        <div class="project-card">
+                            <span class="tag">MQL5 EA</span>
+                            <img src="assets/mql5_ea_UniversalSLTPManager.webp" alt="">
+                            <h3>UniversalSLTPManager</h3>
+                            <p>Ensure your trading account is never left unprotected. UniversalSLTPManager is a powerful utility designed to automatically scan and apply Stop Loss (SL) and Take Profit (TP) to every open position on your account—regardless of how the trade was opened.</p>
+                            <a href="">PRIVATE USE (MQL5 MARKET SOON)</a>
+                        </div>
+                        <!-- Card 12 -->
+                        <div class="project-card">
+                            <span class="tag">MQL5 SCRIPT</span>
+                            <img src="assets/mql5_script_AutoCloseManager.webp" alt="">
+                            <h3>script_AutoCloseManager</h3>
+                            <p>Take full control of your trading account with Script Auto Close Manager. Designed to handle multiple order types simultaneously, this tool ensures your workspace stays clean and your risk is managed by automatically closing positions and deleting pending orders based on your specific profit or loss targets.</p>
+                            <a href="">PRIVATE USE (MQL5 MARKET SOON)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-controls" id="sliderDots">
+                    <!-- Dots generated by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container" style="padding: 40px 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 2rem;">
+                <div style="max-width: 400px;">
+                    <a href="#" class="logo" style="margin-bottom: 1rem; display: block;"><img src="assets/kaptech_logo.webp" alt="KAPTECH" style="height: 100px;"></a>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6;">Software development for simple, practical, and modern utility applications.</p>
+                </div>
+                <div class="nav-links" style="display: flex; gap: 2.5rem;">
+                    <a href="https://github.com/SahrulSidik?tab=repositories" target="_blank" style="color: #0F172A; font-weight: 700;">GitHub</a>
+                    <a href="#" target="_blank" style="color: #0F172A; font-weight: 700;">Linktree</a>
+                </div>
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid #F1F5F9; margin: 2rem 0;">
+            
+            <div style="text-align: center;">
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.4rem;">
+                    <p style="color: var(--text-secondary); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.05rem; opacity: 0.8; margin: 0;">
+                        Designed & Built with <span style="color: #FF4D4D;">❤</span> by 
+                        <a href="https://github.com/SahrulSidik?tab=repositories" target="_blank" class="blue-text" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.1rem; text-decoration: none; transition: var(--transition);" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Sahrul Sidik</a>
+                    </p>
+                    <span style="color: var(--text-secondary); opacity: 0.3; font-weight: 300;">|</span>
+                    <a href="privacy-policy.html" style="text-decoration: none; color: var(--text-secondary); font-size: 0.7rem; font-weight: 400; letter-spacing: 0.15rem; text-transform: uppercase; transition: var(--transition); opacity: 0.7;" onmouseover="this.style.opacity='1'; this.style.color='var(--primary)'" onmouseout="this.style.opacity='0.7'; this.style.color='var(--text-secondary)'">Privacy Policy</a>
+                </div>
+                <p class="copyright" style="margin-top: 0.3rem; letter-spacing: 0.08rem; font-size: 0.58rem; opacity: 0.3; font-weight: 400; text-transform: uppercase;">&copy; 2026 KAPTECH DEVELOPMENT. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Interaction
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // SLIDER LOGIC
+        const track = document.getElementById('sliderTrack');
+        const container = document.getElementById('sliderContainer');
+        const dotsContainer = document.getElementById('sliderDots');
+        const btnToggle = document.getElementById('toggleProjects');
+        const btnText = document.getElementById('btnText');
+        
+        let projects = Array.from(track.children);
+        let currentIndex = 0;
+        let isExpanded = false;
+        let autoSlideInterval;
+
+        // Clone cards for infinite loop
+        function setupInfinite() {
+            const clonesFirst = projects.map(p => {
+                const clone = p.cloneNode(true);
+                clone.classList.add('clone');
+                return clone;
+            });
+            const clonesLast = projects.map(p => {
+                const clone = p.cloneNode(true);
+                clone.classList.add('clone');
+                return clone;
+            });
+            clonesFirst.forEach(clone => track.appendChild(clone));
+            clonesLast.forEach(clone => track.insertBefore(clone, track.firstChild));
+            updateSlider(false);
+        }
+
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            projects.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === currentIndex) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateSlider(animate = true) {
+            if (isExpanded) return;
+            const cardWidth = track.children[0].offsetWidth;
+            const gap = parseFloat(getComputedStyle(track).gap);
+            const totalWidth = cardWidth + gap;
+            
+            // Offset for the prepended clones (length of original projects)
+            const offset = projects.length * totalWidth;
+            const move = offset + (currentIndex * totalWidth);
+            
+            track.style.transition = animate ? "transform 0.6s cubic-bezier(0.19, 1, 0.22, 1)" : "none";
+            track.style.transform = `translateX(-${move}px)`;
+            
+            // Update dots
+            const dots = Array.from(dotsContainer.children);
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex++;
+            updateSlider();
+            
+            if (currentIndex >= projects.length) {
+                setTimeout(() => {
+                    currentIndex = 0;
+                    updateSlider(false);
+                }, 600);
+            }
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            if (!isExpanded) {
+                autoSlideInterval = setInterval(nextSlide, 4000);
+            }
+        }
+
+        // TOGGLE EXPAND
+        btnToggle.onclick = () => {
+            isExpanded = !isExpanded;
+            container.classList.toggle('expanded', isExpanded);
+            
+            if (isExpanded) {
+                clearInterval(autoSlideInterval);
+                track.style.transform = "none";
+                track.style.transition = "none";
+                btnText.innerText = "Hide Projects";
+                // Remove clones in expanded view if needed, or just let grid handle it
+                // For simplicity, we just change CSS display to grid
+            } else {
+                btnText.innerText = `Showing ${projects.length} Projects`;
+                resetAutoSlide();
+                updateSlider(false);
+            }
+        };
+
+        // Initialize
+        setupInfinite();
+        createDots();
+        resetAutoSlide();
+
+        // Reveal Animation for sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(s => {
+            if (s.id !== 'hero') { // Hero is already visible
+                s.style.opacity = "0";
+                s.style.transform = "translateY(40px)";
+                s.style.transition = "all 1s cubic-bezier(0.19, 1, 0.22, 1)";
+                observer.observe(s);
+            }
+        });
+
+        console.log("Kaptech Slider System Active | Infinite Looping Engaged.");
+    </script>
+</body>
+</html>
