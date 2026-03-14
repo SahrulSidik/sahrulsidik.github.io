@@ -38,14 +38,20 @@
         .container { background-color: #ffffff; padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
         h1 { color: var(--text-main); text-align: center; margin-bottom: 30px; border-bottom: 3px solid var(--color-primary); padding-bottom: 10px; }
         h2 { color: var(--color-primary-light); margin-top: 30px; border-left: 5px solid var(--color-primary); padding-left: 15px; }
-        p, li { font-size: 15px; }
+        p, li { font-size: 15px; word-break: break-word; overflow-wrap: anywhere; }
         .highlight { background-color: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 5px; font-style: italic; margin-bottom: 20px; border-left: 3px solid var(--color-primary); }
         ul { padding-left: 20px; }
         li { margin-bottom: 12px; }
-        a { color: var(--color-primary-light); text-decoration: none; font-weight: bold; }
+        a { color: var(--color-primary-light); text-decoration: none; font-weight: bold; word-break: break-all; }
         a:hover { text-decoration: underline; color: var(--text-main); }
-        .contact-box { background-color: var(--bg-card-hover); padding: 20px; border-radius: 5px; margin-top: 30px; border: 1px solid var(--border-color); }
+        .contact-box { background-color: var(--bg-card-hover); padding: 20px; border-radius: 5px; margin-top: 30px; border: 1px solid var(--border-color); word-break: break-all; overflow-wrap: anywhere; }
         footer { text-align: center; margin-top: 40px; font-size: 0.8em; color: var(--text-dim); }
+        
+        /* Mobile Specific Padding Adjustments */
+        @media (max-width: 600px) {
+            body { padding: 1em; }
+            .container { padding: 20px; }
+        }
     </style>
 </head>
 <body>

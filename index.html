@@ -148,7 +148,7 @@
         .projects-container {
             position: relative;
             overflow: hidden;
-            padding: 10px 0;
+            padding: 20px 0 40px 0; /* Standard padding for shadow casting */
         }
 
         .projects-track {
@@ -157,10 +157,12 @@
             padding-top: 10px;
             transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             will-change: transform;
+            position: relative; /* Forces absolute offsets to anchor tightly to the track margin */
         }
 
         .project-card {
-            flex: 0 0 calc(33.333% - 1.67rem); /* Exactly 3 items per view */
+            flex: 0 0 calc((100% - 5rem) / 3); /* Sempurna: 100% lebar dibagi 3 dengan alokasi (2 gap * 2.5rem) */
+            max-width: none;
             background: #FFFFFF;
             border: 1px solid #F1F5F9;
             border-radius: 20px;
@@ -323,33 +325,13 @@
 
         /* EXPANDED GRID STATE */
         .projects-container.expanded .projects-track {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            flex-wrap: wrap;
             transform: none !important;
-            padding: 20px 0;
+            padding-bottom: 20px; /* Extends bottom slightly to pad wrapping */
         }
 
         .projects-container.expanded .project-card.clone {
             display: none;
-        }
-
-        .projects-container.expanded .project-card {
-            flex: none;
-            width: 100%;
-            min-height: 400px;
-        }
-
-        @media (max-width: 1024px) {
-            .projects-container.expanded .projects-track {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .projects-container.expanded .projects-track {
-                grid-template-columns: 1fr;
-            }
         }
 
         .projects-container.expanded + .slider-controls {
@@ -358,10 +340,21 @@
 
         /* RESPONSIVE SLIDER */
         @media (max-width: 1024px) {
-            .project-card { flex: 0 0 calc(50% - 1.25rem); }
+            .project-card { 
+                flex: 0 0 calc((100% - 2.5rem) / 2); /* Perfect 2 items */
+                max-width: none; 
+            }
         }
         @media (max-width: 768px) {
-            .project-card { flex: 0 0 100%; }
+            .project-card { 
+                /* Calculates the perfect 1 element width minus the gap that could leak into the render block */
+                flex: 0 0 100%; 
+                max-width: 100%; 
+                margin: 0; 
+            }
+            .projects-track {
+                gap: 1.5rem; /* Gap is applied perfectly after the 100% card width */
+            }
             h1 { font-size: 3.2rem; }
             .hero-desc { font-size: 1.1rem; }
             .nav-links { display: none; }
@@ -597,13 +590,16 @@
 
         function updateSlider(animate = true) {
             if (isExpanded) return;
-            const cardWidth = track.children[0].offsetWidth;
-            const gap = parseFloat(getComputedStyle(track).gap);
-            const totalWidth = cardWidth + gap;
             
-            // Offset for the prepended clones (length of original projects)
-            const offset = projects.length * totalWidth;
-            const move = offset + (currentIndex * totalWidth);
+            // Dapatkan target card secara langsung di DOM (menambahkan offset dari clone)
+            const realIndex = projects.length + currentIndex;
+            const targetCard = track.children[realIndex];
+            
+            if (!targetCard) return;
+
+            // MENGHENTIKAN "DRIFT" CACAT PERHITUNGAN MATH FRACTIONAL (NOISE KIRI & KANAN)
+            // Cukup gunakan letak layout murni dari objek card nya lalu geser. 100% Presisi Pixel.
+            const move = targetCard.offsetLeft;
             
             track.style.transition = animate ? "transform 0.6s cubic-bezier(0.19, 1, 0.22, 1)" : "none";
             track.style.transform = `translateX(-${move}px)`;
@@ -614,6 +610,13 @@
                 dot.classList.toggle('active', i === currentIndex);
             });
         }
+
+        // Keep slider proportioned perfectly during window resizes
+        window.addEventListener('resize', () => {
+            if (!isExpanded) {
+                updateSlider(false); // Update without animation so it stays glued
+            }
+        });
 
         function nextSlide() {
             currentIndex++;
