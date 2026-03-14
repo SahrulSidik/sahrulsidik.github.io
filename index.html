@@ -162,7 +162,7 @@
 
         .project-card {
             flex: 0 0 calc((100% - 5rem) / 3); /* Sempurna: 100% lebar dibagi 3 dengan alokasi (2 gap * 2.5rem) */
-            max-width: none;
+            max-width: calc((100% - 5rem) / 3); /* KUNCI GRID: paksa batas maksimal agar teks panjang tidak menjorok & merusak baris */
             background: #FFFFFF;
             border: 1px solid #F1F5F9;
             border-radius: 20px;
@@ -213,6 +213,8 @@
             color: var(--dark);
             margin-bottom: 1rem;
             line-height: 1.3;
+            word-break: break-word; /* Menghentikan string (seperti nama EA MQL5 yang sangat panjang) agar tidak merusak kolom flexbox */
+            overflow-wrap: anywhere;
         }
 
         .project-card p {
@@ -342,7 +344,7 @@
         @media (max-width: 1024px) {
             .project-card { 
                 flex: 0 0 calc((100% - 2.5rem) / 2); /* Perfect 2 items */
-                max-width: none; 
+                max-width: calc((100% - 2.5rem) / 2); 
             }
         }
         @media (max-width: 768px) {
